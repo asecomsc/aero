@@ -29,9 +29,11 @@ On Error GoTo handler
     Forms![Impresion Etiquetas].pesoNeto = Mid(Buffer, ini - 8, 4)
     'Debug.Print Buffer
     'Debug.Print Mid(Buffer, 44, 4)
+    Call Imprime
 Exit Sub
 
 handler:
     MsgBox "error numero " & Err.Number
     MsgBox "Buffer: " & Buffer
 End Sub
+
