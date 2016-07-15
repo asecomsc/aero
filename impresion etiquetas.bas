@@ -37,3 +37,6 @@ handler:
     MsgBox "Buffer: " & Buffer
 End Sub
 
+Private Sub paquetes_AfterUpdate()
+    deCuantos.Caption = "/ " & paquetes
+End Sub
