@@ -3,10 +3,8 @@ Option Compare Database
 Sub Imprime()
 Dim Fm As Form
 Set Fm = Forms("Impresion Etiquetas")
-Fm.deCuantos.Caption = "/ " & Fm.paquetes
-    For i = 1 To Fm.paquetes
         Fm.paquete = Fm.paquete + 1  'set en form, valor predeterminado = 0
-        
+
         Open "etiqueta.txt" For Output As #1
         Print #1, "^XA~TA080~JSN^LT0^MNW^MTT^PON^PMN^LH0,0^JMA^PR4,4~SD15^JUS^LRN^CI0^XZ"
         Print #1, "^XA"
@@ -32,7 +30,6 @@ Fm.deCuantos.Caption = "/ " & Fm.paquetes
         Print #1, "^FT410,992^A0B,28,28^FH\^FDPeso^FS"
         Print #1, "^FT288,836^A0B,45,45^FH\^FD" & Fm.cbModelo.Column(1) & "^FS"
         Print #1, "^FT281,994^A0B,28,28^FH\^FDModelo:^FS"
-        Print #1, "^FT77,92^A0B,28,28^FH\^FD2.2^FS"
         Print #1, "^FO675,47^GB0,1110,1^FS"
         Print #1, "^FT762,994^A0B,23,24^FH\^FDTELEFONOS:      OFNA:  449  915 46 14       CEL:  449 123 83 96^FS"
         Print #1, "^FO210,65^GB0,1110,1^FS"
@@ -42,6 +39,6 @@ Fm.deCuantos.Caption = "/ " & Fm.paquetes
         Print #1, "^PQ1,0,1,Y^XZ"
         Close #1
         retval = Shell("cmd /c copy etiqueta.txt \\sergio-pc\zebra")
-    Next i
+        If Val(Fm.paquete) = Val(Fm.paquetes) Then anyval = MsgBox("Impresion Terminada...", vbCritical, "Impresora Zebra")
 Set ob = Nothing
 End Sub
